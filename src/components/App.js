@@ -59,7 +59,7 @@ function App() {
     });
   };
 
-  const handleAddNewQuote = (ev) => {
+  const handleAddNewQuote = () => {
     setData([...data, newObject]);
     setNewObject({ quote: '', character: '' });
   };
@@ -78,14 +78,21 @@ function App() {
 
   return (
     <div className="App">
-      <header></header>
+      <header>
+        <h1 className="header">FRIENDS</h1>
+      </header>
       <main>
         <section>
-          <form action="" onSubmit={handleSubmit}>
-            <legend>Frases de Friends</legend>
-            <label htmlFor="">Filtrar por frase</label>
+          <form action="" onSubmit={handleSubmit} className="form">
+            <legend className="legend">Frases de Friends</legend>
+            <hr className="line" />
+            <label htmlFor="" className="label">
+              Filtrar por frase
+            </label>
             <input type="text" value={inputQuote} onInput={handleInputQuote} />
-            <label htmlFor="">Filtrar por personaje</label>
+            <label htmlFor="" className="label">
+              Filtrar por personaje
+            </label>
             <select name="" id="" onChange={handleSelectCharacter}>
               <option value="Todos">Todos</option>
               <option value="Ross">Ross</option>
@@ -101,9 +108,12 @@ function App() {
           <ul className="list">{renderList()}</ul>
         </section>
         <section>
-          <form action="" onSubmit={handleSubmit}>
-            <legend>Añadir una nueva frase</legend>
-            <label htmlFor="">Frase</label>
+          <form action="" onSubmit={handleSubmit} className="form">
+            <legend className="legend">Añadir una nueva frase</legend>
+            <hr className="line" />
+            <label htmlFor="" className="label">
+              Frase
+            </label>
             <input
               type="text"
               id="quote"
@@ -111,7 +121,9 @@ function App() {
               onInput={handleNewQuote}
               value={newObject.quote}
             />
-            <label htmlFor="">Personaje</label>
+            <label htmlFor="" className="label">
+              Personaje
+            </label>
             <input
               type="text"
               id="character"
@@ -121,6 +133,7 @@ function App() {
             />
             <input
               type="button"
+              className="button"
               value="Añadir una nueva frase"
               onClick={handleAddNewQuote}
             />

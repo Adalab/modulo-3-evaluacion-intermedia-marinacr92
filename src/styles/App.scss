@@ -1,5 +1,23 @@
 /* Aquí van tus estilos */
+:root{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+.form{
+    text-align: center;
+    margin: 20px 0;
+}
+.legend{
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+.label{
+    margin: 0 10px;
+    
+}
 .list{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -11,8 +29,18 @@
     width: 300px;
     margin-top: 10px;
     list-style: none;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 .characters{
     color: green;
+}
+.button{
+    background-color: green;
+    color: white;
+    border: none;
+    height: 30px;
+    border-radius: 10px;
+    margin-left: 10px;
 }
