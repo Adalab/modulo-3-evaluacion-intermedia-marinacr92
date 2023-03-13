@@ -6,36 +6,32 @@ import dataJSON from '../data.json';
 function App() {
   const [data, setData] = useState(dataJSON);
   const [inputQuote, setInputQuote] = useState('');
-  const [selectCharacter, setSelectCharacter] = useState('');
+  const [selectCharacter, setSelectCharacter] = useState('Todos');
 
   // useEffect(() => {
   //   callToApi().then((responseData) => {
   //     console.log(responseData);
   //     setData(responseData);
   //   });
-  // }, []);
-
-  // const renderList = () => {
-  //   return data
-  //     .filter((eachObject) => {
-  //       return eachObject.quote
-  //         .toLowerCase()
-  //         .includes(inputQuote.toLowerCase());
-  //     })
-  //     .map((eachObject, index) => {
-  //       return (
-  //         <li key={index} className="card">
-  //           <p>{eachObject.quote}</p>
-  //           <p className="characters">{eachObject.character}</p>
-  //         </li>
-  //       );
-  //     });
-  // };
+  // }, [data]);
 
   const renderList = () => {
     return data
       .filter((eachObject) => {
-        return eachObject.character === selectCharacter;
+        if (inputQuote === '' && selectCharacter === 'Todos') {
+          return data;
+        } else if (inputQuote === '' && selectCharacter !== 'Todos') {
+          return eachObject.character === selectCharacter;
+        } else if (inputQuote !== '' && selectCharacter === 'Todos') {
+          return eachObject.quote
+            .toLowerCase()
+            .includes(inputQuote.toLowerCase());
+        } else {
+          return (
+            eachObject.character === selectCharacter &&
+            eachObject.quote.toLowerCase().includes(inputQuote.toLowerCase())
+          );
+        }
       })
       .map((eachObject, index) => {
         return (
@@ -63,28 +59,14 @@ function App() {
           <label htmlFor="">Filtrar por frase</label>
           <input type="text" value={inputQuote} onInput={handleInputQuote} />
           <label htmlFor="">Filtrar por personaje</label>
-          <select name="" id="">
-            <option value="todos" onChange={handleSelectCharacter}>
-              Todos
-            </option>
-            <option value="ross" onChange={handleSelectCharacter}>
-              Ross
-            </option>
-            <option value="monica" onChange={handleSelectCharacter}>
-              Mónica
-            </option>
-            <option value="joey" onChange={handleSelectCharacter}>
-              Joey
-            </option>
-            <option value="phoebe" onChange={handleSelectCharacter}>
-              Phoebe
-            </option>
-            <option value="chandler" onChange={handleSelectCharacter}>
-              Chandler
-            </option>
-            <option value="rachel" onChange={handleSelectCharacter}>
-              Rachel
-            </option>
+          <select name="" id="" onChange={handleSelectCharacter}>
+            <option value="Todos">Todos</option>
+            <option value="Ross">Ross</option>
+            <option value="Monica">Mónica</option>
+            <option value="Joey">Joey</option>
+            <option value="Phoebe">Phoebe</option>
+            <option value="Chandler">Chandler</option>
+            <option value="Rachel">Rachel</option>
           </select>
         </form>
       </header>
