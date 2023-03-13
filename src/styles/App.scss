@@ -1,0 +1,18 @@
+/* Aquí van tus estilos */
+
+.list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
+.card{
+    border: 1px solid green;
+    width: 300px;
+    margin-top: 10px;
+    
+}
+
+.characters{
+    color: green;
+}
