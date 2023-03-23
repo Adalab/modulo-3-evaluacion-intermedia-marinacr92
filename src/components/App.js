@@ -11,6 +11,7 @@ function App() {
     quote: '',
     character: '',
   });
+  const [completed, setCompleted] = useState(false);
 
   useEffect(() => {
     if (!data || data.length === 0) {
@@ -24,33 +25,6 @@ function App() {
     ls.set('data', data);
   }, [data]);
 
-  // const renderList = () => {
-  //   return data
-  //     .filter((eachObject) => {
-  //       if (inputQuote === '' && selectCharacter === 'Todos') {
-  //         return data;
-  //       } else if (inputQuote === '' && selectCharacter !== 'Todos') {
-  //         return eachObject.character === selectCharacter;
-  //       } else if (inputQuote !== '' && selectCharacter === 'Todos') {
-  //         return eachObject.quote
-  //           .toLowerCase()
-  //           .includes(inputQuote.toLowerCase());
-  //       } else {
-  //         return (
-  //           eachObject.character === selectCharacter &&
-  //           eachObject.quote.toLowerCase().includes(inputQuote.toLowerCase())
-  //         );
-  //       }
-  //     })
-  //     .map((eachObject, index) => {
-  //       return (
-  //         <li key={index} className="card">
-  //           <p>{eachObject.quote}</p>
-  //           <p className="characters">{eachObject.character}</p>
-  //         </li>
-  //       );
-  //     });
-  // };
   const renderList = () => {
     return data
       .filter((eachObject) =>
@@ -81,8 +55,13 @@ function App() {
   };
 
   const handleAddNewQuote = () => {
-    setData([...data, newObject]);
-    setNewObject({ quote: '', character: '' });
+    if (newObject.quote !== '' && newObject.character !== '') {
+      setData([...data, newObject]);
+      setNewObject({ quote: '', character: '' });
+      setCompleted(false);
+    } else {
+      setCompleted(true);
+    }
   };
 
   const handleInputQuote = (ev) => {
@@ -159,6 +138,9 @@ function App() {
               onClick={handleAddNewQuote}
             />
           </form>
+          <p className={completed ? 'error-msg' : 'hidden'}>
+            Por favor, rellene ambos campos
+          </p>
         </section>
       </main>
     </div>
