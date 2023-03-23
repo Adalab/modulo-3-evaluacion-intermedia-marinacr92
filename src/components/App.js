@@ -24,22 +24,43 @@ function App() {
     ls.set('data', data);
   }, [data]);
 
+  // const renderList = () => {
+  //   return data
+  //     .filter((eachObject) => {
+  //       if (inputQuote === '' && selectCharacter === 'Todos') {
+  //         return data;
+  //       } else if (inputQuote === '' && selectCharacter !== 'Todos') {
+  //         return eachObject.character === selectCharacter;
+  //       } else if (inputQuote !== '' && selectCharacter === 'Todos') {
+  //         return eachObject.quote
+  //           .toLowerCase()
+  //           .includes(inputQuote.toLowerCase());
+  //       } else {
+  //         return (
+  //           eachObject.character === selectCharacter &&
+  //           eachObject.quote.toLowerCase().includes(inputQuote.toLowerCase())
+  //         );
+  //       }
+  //     })
+  //     .map((eachObject, index) => {
+  //       return (
+  //         <li key={index} className="card">
+  //           <p>{eachObject.quote}</p>
+  //           <p className="characters">{eachObject.character}</p>
+  //         </li>
+  //       );
+  //     });
+  // };
   const renderList = () => {
     return data
+      .filter((eachObject) =>
+        eachObject.quote.toLowerCase().includes(inputQuote.toLowerCase())
+      )
       .filter((eachObject) => {
-        if (inputQuote === '' && selectCharacter === 'Todos') {
-          return data;
-        } else if (inputQuote === '' && selectCharacter !== 'Todos') {
-          return eachObject.character === selectCharacter;
-        } else if (inputQuote !== '' && selectCharacter === 'Todos') {
-          return eachObject.quote
-            .toLowerCase()
-            .includes(inputQuote.toLowerCase());
+        if (selectCharacter === 'Todos') {
+          return true;
         } else {
-          return (
-            eachObject.character === selectCharacter &&
-            eachObject.quote.toLowerCase().includes(inputQuote.toLowerCase())
-          );
+          return eachObject.character === selectCharacter;
         }
       })
       .map((eachObject, index) => {
